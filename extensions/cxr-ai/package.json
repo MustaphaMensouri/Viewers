@@ -1,0 +1,7 @@
+{
+  "name": "@ohif/extension-cxr-ai",
+  "version": "0.0.1",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "private": true
+}

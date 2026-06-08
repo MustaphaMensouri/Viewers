@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { id } from './id';
 import { initToolGroups, toolbarButtons, cornerstone,
+  cxrAi,
   ohif,
   dicomsr,
   dicomvideo,
@@ -29,7 +30,7 @@ export const longitudinalInstance = {
   props: {
     ...basicLayout.props,
     leftPanels: [tracked.thumbnailList],
-    rightPanels: [cornerstone.segmentation, tracked.measurements],
+    rightPanels: [cxrAi.panel, cornerstone.segmentation, tracked.measurements],
     viewports: [
       {
         namespace: tracked.viewport,

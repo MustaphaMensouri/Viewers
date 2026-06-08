@@ -26,6 +26,10 @@ export const ohif = {
     '@ohif/extension-cornerstone.sopClassHandlerModule.DicomMicroscopySopClassHandler',
 };
 
+export const cxrAi = {
+  panel: '@ohif/extension-cxr-ai.panelModule.cxr-ai',
+};
+
 export const cornerstone = {
   measurements: '@ohif/extension-cornerstone.panelModule.panelMeasurement',
   labelMapSegmentationPanel:
@@ -86,6 +90,7 @@ export const extensionDependencies = {
   '@ohif/extension-cornerstone-dicom-rt': '^3.0.0',
   '@ohif/extension-dicom-pdf': '^3.0.1',
   '@ohif/extension-dicom-video': '^3.0.1',
+  '@ohif/extension-cxr-ai': '0.0.1',
 };
 
 export const sopClassHandlers = [
@@ -286,7 +291,7 @@ export const basicLayout = {
   props: {
     leftPanels: [ohif.thumbnailList],
     leftPanelResizable: true,
-    rightPanels: [cornerstone.segmentation, cornerstone.measurements],
+    rightPanels: [cxrAi.panel,cornerstone.segmentation, cornerstone.measurements],
     rightPanelClosed: true,
     rightPanelResizable: true,
     viewports: [

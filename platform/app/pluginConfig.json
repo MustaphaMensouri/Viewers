@@ -4,6 +4,14 @@
       "packageName": "@ohif/extension-default"
     },
     {
+      "packageName": "@ohif/extension-cxr-ai",
+      "version": "0.0.1"
+    },
+    {
+      "packageName": "@ohif/extension-cornerstone",
+      "version": "3.0.0"
+    },
+    {
       "packageName": "@ohif/extension-cornerstone",
       "version": "3.0.0"
     },
