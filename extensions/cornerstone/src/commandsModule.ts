@@ -56,6 +56,8 @@ import { createSegmentationForViewport } from './utils/createSegmentationForView
 import { utilities as segmentationUtilities } from '@cornerstonejs/tools/segmentation';
 import i18n from '@ohif/i18n';
 
+import { runAiLungSegmentation } from './utils/runAiLungSegmentation';
+
 const { add, intersect, subtract, copy } = cstUtils.contourSegmentation;
 
 const { DefaultHistoryMemo } = csUtils.HistoryMemo;
@@ -219,6 +221,12 @@ function commandsModule({
   };
 
   const actions = {
+      runAiLungSegmentation: async () => {
+        return runAiLungSegmentation({
+          servicesManager,
+          commandsManager,
+        });
+      },
     jumpToMeasurementViewport: ({ annotationUID, measurement }) => {
       cornerstoneTools.annotation.selection.setAnnotationSelected(annotationUID, true);
       const { metadata } = measurement;
@@ -2508,6 +2516,9 @@ function commandsModule({
   const definitions = {
     // The command here is to show the viewer context menu, as being the
     // context menu
+    runAiLungSegmentation: {
+      commandFn: actions.runAiLungSegmentation,
+    },
     showCornerstoneContextMenu: {
       commandFn: actions.showCornerstoneContextMenu,
       options: {

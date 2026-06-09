@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   IconPresentationProvider,
   Popover,
@@ -25,6 +25,51 @@ type PanelSegmentationProps = {
   // The first element is the primary type. Additional elements are secondary types.
   segmentationRepresentationTypes?: SegmentationRepresentations[];
 } & withAppTypes;
+
+function RunAiLungSegmentationButton({ commandsManager, disabled }) {
+  const [isRunning, setIsRunning] = useState(false);
+
+  const handleClick = async () => {
+    if (isRunning || disabled) {
+      return;
+    }
+
+    setIsRunning(true);
+
+    try {
+      await commandsManager.run('runAiLungSegmentation');
+    } finally {
+      setIsRunning(false);
+    }
+  };
+
+  return (
+    <div className="px-2 py-1">
+      <button
+        type="button"
+        disabled={disabled || isRunning}
+        onClick={handleClick}
+        className="
+          bg-primary-dark
+          hover:bg-primary-light
+          active:bg-primary-light
+          text-primary-active
+          border-primary-main
+          flex h-8 w-full items-center justify-center gap-2
+          rounded border px-3 text-sm font-medium
+          transition-colors duration-150
+          disabled:cursor-not-allowed disabled:opacity-60
+        "
+      >
+        {isRunning && (
+          <span className="h-3 w-3 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        )}
+
+        {isRunning ? 'Running AI Lung Segmentation...' : 'Run AI Lung Segmentation'}
+      </button>
+    </div>
+  );
+}
 
 export default function PanelSegmentation({
   children,
@@ -328,6 +373,10 @@ export default function PanelSegmentation({
           {children}
           <SegmentationTable.Config />
           <SegmentationTable.AddSegmentationRow />
+          <RunAiLungSegmentationButton
+            commandsManager={commandsManager}
+            disabled={disabled}
+          />
           {renderModeContent()}
         </SegmentationTable>
       </PopoverAnchor>
