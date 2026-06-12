@@ -23,7 +23,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: mustaphamensouri/ohif-viewer:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ohif-viewer:latest
           build-args: |
             PUBLIC_URL=/
             APP_CONFIG=config/default.js
